@@ -1,0 +1,15 @@
+{
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^]*)\\)\\;", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["twMerge\\(([^]*)\\)\\;", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}

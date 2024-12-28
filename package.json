@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "",
+    "test": "",
+    "build": "",
+    "lint": "",
+    "lint:fix": "",
+    "ts:check": ""
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3"
+  }
+}
