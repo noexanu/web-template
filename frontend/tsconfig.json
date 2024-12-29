@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "lib": ["dom", "dom.iterable"],
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/public/*": ["./public/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["src/**/*", "types/*.d.ts", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", "build", ".next"]
+}
