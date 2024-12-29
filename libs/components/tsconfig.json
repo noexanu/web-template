@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "lib": ["dom", "dom.iterable"],
+    "jsx": "preserve"
+  },
+  "include": ["src/**/*", "types/*.d.ts", ".storybook/**/*"],
+  "exclude": ["node_modules", "build"]
+}

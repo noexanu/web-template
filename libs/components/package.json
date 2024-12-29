@@ -1,0 +1,29 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "storybook dev -p 6006 --no-open",
+    "test:": "",
+    "build": "storybook build -o build",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier \"src/**/*.{ts,tsx,json}\" --check",
+    "format:fix": "prettier --write \"src/**/*.{ts,tsx,json}\"",
+    "ts:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@storybook/nextjs": "^8.4.7",
+    "@storybook/react": "^8.4.7",
+    "@types/node": "^20.17.10",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "postcss": "^8.4.49",
+    "storybook": "^8.4.7",
+    "tailwindcss": "^3.4.17"
+  }
+}

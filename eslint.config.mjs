@@ -6,9 +6,8 @@ import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import eslintPluginRegexp from "eslint-plugin-regexp";
 import eslintPluginImportSort from "eslint-plugin-simple-import-sort";
 import eslintPluginSonar from "eslint-plugin-sonarjs";
+import eslintPluginStorybook from "eslint-plugin-storybook";
 import eslintPluginTailwind from "eslint-plugin-tailwindcss";
-import eslintPluginUnicorn from "eslint-plugin-unicorn";
-// eslint-disable-next-line import/no-unresolved
 import tsEslint from "typescript-eslint";
 
 const getTailwindConfigPath = (relativePath) => {
@@ -28,15 +27,18 @@ export default tsEslint.config(
       eslintPluginImport.flatConfigs.recommended,
       eslintPluginImport.flatConfigs.typescript,
       eslintPluginSonar.configs.recommended,
-      eslintPluginUnicorn.configs["flat/recommended"],
       eslintPluginRegexp.configs["flat/recommended"],
     ],
     plugins: {
+      "@next/next": eslintPluginNext,
+      "react-hooks": eslintPluginReactHooks,
       "simple-import-sort": eslintPluginImportSort,
       "eslint-comments": eslintPluginEslintComments,
     },
     rules: {
       ...eslintPluginEslintComments.configs.recommended.rules,
+      "@typescript-eslint/consistent-type-imports": "warn",
+      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_" },
@@ -69,10 +71,6 @@ export default tsEslint.config(
       eslintPluginReact.configs.flat.recommended,
       eslintPluginTailwind.configs["flat/recommended"],
     ],
-    plugins: {
-      "react-hooks": eslintPluginReactHooks,
-      "@next/next": eslintPluginNext,
-    },
     rules: {
       ...eslintPluginReactHooks.configs.recommended.rules,
       ...eslintPluginNext.configs.recommended.rules,
@@ -84,5 +82,31 @@ export default tsEslint.config(
         callees: ["className", "cva", "twMerge"],
       },
     },
+  },
+
+  {
+    name: "components",
+    files: ["libs/components/**/*.{ts,tsx}"],
+    extends: [
+      eslintPluginReact.configs.flat.recommended,
+      eslintPluginTailwind.configs["flat/recommended"],
+    ],
+    rules: {
+      ...eslintPluginReactHooks.configs.recommended.rules,
+      ...eslintPluginNext.configs.recommended.rules,
+      "react/react-in-jsx-scope": "off",
+    },
+    settings: {
+      tailwindcss: {
+        config: getTailwindConfigPath("libs/components/tailwind.config.ts"),
+        callees: ["className", "cva", "twMerge"],
+      },
+    },
+  },
+
+  {
+    name: "stories",
+    files: ["libs/components/**/*.stories.{ts,tsx}"],
+    extends: [eslintPluginStorybook.configs["flat/recommended"]],
   }
 );
