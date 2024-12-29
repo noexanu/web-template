@@ -2,6 +2,7 @@
 
 # folders
 node_modules
+build
 .next
 .turbo
 
