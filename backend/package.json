@@ -1,0 +1,21 @@
+{
+  "name": "@template/backend",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "test": "",
+    "build": "tsc",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier 'src/**/*.{ts,tsx,json}' --check",
+    "format:fix": "prettier --write 'src/**/*.{ts,tsx,json}'",
+    "ts:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^20.17.10",
+    "tsx": "^4.19.2"
+  }
+}

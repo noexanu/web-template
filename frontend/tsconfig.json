@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "lib": ["dom", "dom.iterable"],
     "jsx": "preserve",
+    "noEmit": true,
     "paths": {
       "@/*": ["./src/*"],
       "@/public/*": ["./public/*"]
