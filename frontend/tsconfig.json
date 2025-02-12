@@ -5,15 +5,7 @@
     "lib": ["dom", "dom.iterable"],
     "jsx": "preserve",
     "noEmit": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/public/*": ["./public/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "plugins": [{ "name": "next" }]
   },
   "include": ["src/**/*", "types/*.d.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "build", ".next"]
