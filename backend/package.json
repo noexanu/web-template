@@ -8,23 +8,35 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "format": "prettier 'src/**/*.{ts,tsx,json}' --check",
-    "format:fix": "prettier --write 'src/**/*.{ts,tsx,json}'",
-    "ts:check": "tsc --noEmit"
+    "format:fix": "prettier --write 'src/**/*.{ts,tsx,json}' && pnpm run prisma:format",
+    "ts:check": "tsc --noEmit",
+    "prisma:format": "prisma format --schema=./src/prisma/schema.prisma",
+    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate deploy --schema=./src/prisma/schema.prisma",
+    "prisma:migrate:dev": "prisma migrate dev --schema=./src/prisma/schema.prisma"
   },
   "dependencies": {
+    "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^10.0.2",
     "@fastify/helmet": "^13.0.1",
+    "@prisma/client": "^6.4.1",
     "@trpc/server": "11.0.0-rc.755",
+    "argon2": "^0.41.1",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
+    "inversify": "^6.2.2",
+    "jsonwebtoken": "^9.0.2",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",
+    "reflect-metadata": "^0.2.2",
     "uuid": "^11.0.5",
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "^22.13.1",
     "@types/uuid": "^10.0.0",
+    "prisma": "^6.4.1",
     "tsx": "^4.19.2"
   }
 }

@@ -5,10 +5,12 @@
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
     "dbaeumer.vscode-eslint",
-    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+
     "shardulm94.trailing-spaces",
     "streetsidesoftware.code-spell-checker",
-    "esbenp.prettier-vscode"
+
+    "bradlc.vscode-tailwindcss"
   ],
 
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.

@@ -1,3 +1,5 @@
+import "reflect-metadata";
+import cookie from "@fastify/cookie";
 import cors from "@fastify/cors";
 import helmet from "@fastify/helmet";
 import {
@@ -7,7 +9,8 @@ import {
 import Fastify from "fastify";
 import { v7 } from "uuid";
 
-import { envConfig } from "./const/envConfig";
+import { corsConfig } from "./config/corsConfig";
+import { envConfig } from "./config/envConfig";
 import { type Router, router } from "./routers/router";
 import { logger } from "./utils/logger";
 import { createContext } from "./utils/trpc";
@@ -19,14 +22,17 @@ const server = Fastify({
   loggerInstance: logger,
 });
 
-server.register(cors);
+server.register(cors, corsConfig);
+server.register(cookie);
 server.register(helmet);
 server.register(fastifyTRPCPlugin, {
   prefix: "/trpc",
   trpcOptions: {
     router,
     createContext,
-    onError: ({ error }) => logger.error(error.message),
+    onError: ({ ctx, error }) => {
+      logger.error({ error, reqId: ctx?.req.id }, "unhandled error");
+    },
   } satisfies FastifyTRPCPluginOptions<Router>["trpcOptions"],
 });
 
