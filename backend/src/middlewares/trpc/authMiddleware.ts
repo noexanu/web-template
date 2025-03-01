@@ -1,8 +1,11 @@
 import { TRPCError } from "@trpc/server";
 
+import { container } from "../../config/inversifyConfig";
+import { AUTH_SCHEME } from "../../const/tokens.const";
+import { TokenService } from "../../services/TokenService";
 import { trpc } from "../../utils/trpc";
 
-const AUTH_SCHEME = "Bearer";
+const tokenService = container.get(TokenService);
 
 export const authMiddleware = trpc.middleware(async ({ ctx, next }) => {
   const authorizationHeaderContent = ctx.req.headers.authorization ?? "";
@@ -12,7 +15,7 @@ export const authMiddleware = trpc.middleware(async ({ ctx, next }) => {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
-  const accessTokenPayload = await Promise.resolve("accessTokenPayload");
+  const { uuid } = tokenService.verifyToken(accessToken, "access");
 
-  return next({ ctx: { accessTokenPayload } });
+  return next({ ctx: { uuid } });
 });
