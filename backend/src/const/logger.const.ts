@@ -1,0 +1,38 @@
+export const REDACTION_CENSOR = "*****REDACTED*****";
+export const REDACTION_PATHS: string[] = [
+  "req.headers.cookie",
+  "req.headers.authorization",
+];
+
+export const PRISMA_ERROR_TO_STATUS_CODE_MAP: Record<string, number> = {
+  P2000: 400,
+  P2001: 404,
+  P2002: 409,
+  P2003: 409,
+  P2004: 400,
+  P2005: 400,
+  P2006: 400,
+  P2007: 400,
+  P2008: 400,
+  P2009: 400,
+  P2010: 500,
+  P2011: 400,
+  P2012: 400,
+  P2013: 400,
+  P2014: 400,
+  P2015: 404,
+  P2016: 500,
+  P2017: 404,
+  P2018: 500,
+  P2019: 400,
+  P2020: 400,
+  P2021: 500,
+  P2022: 500,
+  P2023: 500,
+  P2024: 504,
+  P2025: 404,
+  P2026: 500,
+  P2027: 400,
+  P2028: 500,
+  P2030: 409,
+};
