@@ -1,17 +1,21 @@
-"use client";
+"use server";
 
-import { trpc } from "../utils/trpc";
+import Link from "next/link";
 
-export default function HomePage() {
-  const { isPending, isError, data } = trpc.test.useQuery({ text: "User" });
+import { Home } from "../components/Home";
+import { HydrateClient } from "../components/HydrateClient/HydrateClient";
+import { ROUTES } from "../const/routes.const";
+import { prefetchQuery } from "../utils/querySSR.utils";
+import { trpcSSR } from "../utils/trpcSSR.utils";
 
-  if (isPending) {
-    return <>fetching...</>;
-  }
+export default async function HomePage() {
+  await prefetchQuery(trpcSSR.test.queryOptions());
 
-  if (isError) {
-    return <>error</>;
-  }
-
-  return <>fetched: {data}</>;
+  return (
+    <HydrateClient>
+      <Home />
+      <Link href={ROUTES.signin}>signin</Link>
+      <Link href={ROUTES.signup}>signup</Link>
+    </HydrateClient>
+  );
 }
