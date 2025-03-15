@@ -1,0 +1,32 @@
+name: Setup monorepo
+runs:
+  using: "composite"
+  steps:
+    - name: Install asdf & tools
+      uses: asdf-vm/actions/install@v3
+
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      with:
+        key: ${{ hashFiles('pnpm-lock.yaml') }}
+        path: node_modules
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm i
+
+    - name: Use .env.example files
+      shell: bash
+      run: |
+        envFilePaths=$(find . -name ".env.example")
+        for envFilePath in $envFilePaths;
+        do
+            outputPath=$(echo $envFilePath | sed "s/.example//g")
+            cp $envFilePath $outputPath
+        done
+
+    - name: Generate backend prisma client
+      shell: bash
+      run: |
+        cd backend
+        pnpm run prisma:generate
