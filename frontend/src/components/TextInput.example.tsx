@@ -1,12 +1,18 @@
-import { useController } from "react-hook-form";
+import { type FC, type JSX } from "react";
+import { useFormContext } from "react-hook-form";
 
-export const TextInput = (props: { name: string }) => {
-  const {
-    field: { value: defaultValue, ...fieldProps },
-    // fieldState,
-  } = useController(props);
+import { getFieldError } from "../utils/form.utils";
+
+type Props = JSX.IntrinsicElements["input"] & { name: string };
+
+export const TextInput: FC<Props> = (props) => {
+  const { register, formState } = useFormContext();
+  const error = getFieldError(props.name, formState);
 
   return (
-    <input type="text" {...props} {...fieldProps} defaultValue={defaultValue} />
+    <div className="flex">
+      <input {...props} {...register(props.name)} />
+      {error}
+    </div>
   );
 };

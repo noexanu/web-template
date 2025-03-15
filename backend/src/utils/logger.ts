@@ -7,7 +7,7 @@ export const logger = pino({
   transport: { target: "pino-pretty" },
   level: envConfig.LOGGING_LEVEL,
   serializers: {
-    req: ({ headers, url }) => ({ headers, url }),
+    req: ({ headers, url }: Request) => ({ headers, url }),
   },
   redact: {
     paths: REDACTION_PATHS,

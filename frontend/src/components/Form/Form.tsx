@@ -5,7 +5,7 @@ import { type z } from "zod";
 
 type Props<T extends z.ZodSchema> = {
   schema: T;
-  defaultValues?: z.output<T>;
+  defaultValues?: Partial<z.output<T>>;
   onSubmit: (formData: z.output<T>) => Promise<void> | void;
   children: ReactNode;
 };
@@ -16,9 +16,10 @@ export const Form = <T extends z.ZodSchema>({
   onSubmit,
   children,
 }: Props<T>) => {
+  const computedDefaults: z.output<T> = { ...defaultValues };
   const methods = useForm({
     resolver: zodResolver(schema),
-    defaultValues,
+    defaultValues: computedDefaults,
   });
 
   return (
