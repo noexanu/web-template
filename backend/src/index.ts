@@ -15,7 +15,7 @@ import { type Router, router } from "./routers/router";
 import { logger } from "./utils/logger";
 import { createContext } from "./utils/trpc";
 
-export { type Router };
+export { type Router } from "./routers/router";
 
 const server = Fastify({
   genReqId: () => v7(),
@@ -37,10 +37,10 @@ server.register(fastifyTRPCPlugin, {
 });
 
 server.listen({ port: envConfig.PORT }, (error) => {
-  if (!error) {
-    logger.info(`Server running on port: ${envConfig.PORT}`);
-  } else {
+  if (error) {
     logger.info(`Server run failed: ${error.message}`);
-    process.exit(1);
+    throw error;
+  } else {
+    logger.info(`Server running on port: ${envConfig.PORT}`);
   }
 });

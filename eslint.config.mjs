@@ -8,6 +8,7 @@ import eslintPluginImportSort from "eslint-plugin-simple-import-sort";
 import eslintPluginSonar from "eslint-plugin-sonarjs";
 import eslintPluginStorybook from "eslint-plugin-storybook";
 import eslintPluginTailwind from "eslint-plugin-tailwindcss";
+import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import tsEslint from "typescript-eslint";
 
 const getTailwindConfigPath = (relativePath) => {
@@ -23,11 +24,12 @@ export default tsEslint.config(
   {
     name: "global",
     extends: [
-      tsEslint.configs.recommended,
+      tsEslint.configs.strictTypeChecked,
       eslintPluginImport.flatConfigs.recommended,
       eslintPluginImport.flatConfigs.typescript,
       eslintPluginSonar.configs.recommended,
       eslintPluginRegexp.configs["flat/recommended"],
+      eslintPluginUnicorn.configs["recommended"],
     ],
     plugins: {
       "@next/next": eslintPluginNext,
@@ -38,10 +40,24 @@ export default tsEslint.config(
     rules: {
       ...eslintPluginEslintComments.configs.recommended.rules,
       "@typescript-eslint/consistent-type-imports": "warn",
+      "@typescript-eslint/no-confusing-void-expression": "off",
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        { allowNumber: true },
+      ],
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        { checksVoidReturn: false },
+      ],
+      "unicorn/filename-case": "off",
+      "unicorn/prevent-abbreviations": [
+        "error",
+        { checkFilenames: false, checkVariables: false },
       ],
       "simple-import-sort/imports": [
         "error",
@@ -65,8 +81,8 @@ export default tsEslint.config(
   },
 
   {
-    name: "frontend",
-    files: ["frontend/**/*.{ts,tsx}"],
+    name: "frontendTools",
+    files: ["frontend/**/*.{ts,tsx}", "libs/components/**/*.{ts,tsx}"],
     extends: [
       eslintPluginReact.configs.flat.recommended,
       eslintPluginTailwind.configs["flat/recommended"],
@@ -76,6 +92,10 @@ export default tsEslint.config(
       ...eslintPluginNext.configs.recommended.rules,
       "react/react-in-jsx-scope": "off",
     },
+  },
+
+  {
+    name: "frontend",
     settings: {
       tailwindcss: {
         config: getTailwindConfigPath("frontend/tailwind.config.ts"),
@@ -86,16 +106,6 @@ export default tsEslint.config(
 
   {
     name: "components",
-    files: ["libs/components/**/*.{ts,tsx}"],
-    extends: [
-      eslintPluginReact.configs.flat.recommended,
-      eslintPluginTailwind.configs["flat/recommended"],
-    ],
-    rules: {
-      ...eslintPluginReactHooks.configs.recommended.rules,
-      ...eslintPluginNext.configs.recommended.rules,
-      "react/react-in-jsx-scope": "off",
-    },
     settings: {
       tailwindcss: {
         config: getTailwindConfigPath("libs/components/tailwind.config.ts"),
@@ -108,5 +118,10 @@ export default tsEslint.config(
     name: "stories",
     files: ["libs/components/**/*.stories.{ts,tsx}"],
     extends: [eslintPluginStorybook.configs["flat/recommended"]],
+  },
+
+  {
+    name: "backend",
+    ignores: ["backend/**/prisma/client/**/*"],
   }
 );

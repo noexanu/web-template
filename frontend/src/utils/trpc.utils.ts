@@ -3,6 +3,10 @@ import { redirect } from "next/navigation";
 import { envPublicConfig } from "../config/envPublicConfig";
 import { ROUTES } from "../const/routes.const";
 
+type RefreshTokenResponseData = {
+  result: { data: { accessToken: string } };
+};
+
 export const refreshTokens = async (): Promise<string> => {
   const response = await fetch(
     `${envPublicConfig.NEXT_PUBLIC_SERVER_BASE_URL}/refreshTokens`,
@@ -13,8 +17,8 @@ export const refreshTokens = async (): Promise<string> => {
     }
   );
 
-  const responseData = await response.json();
-  const accessToken = responseData?.result?.data?.accessToken;
+  const responseData = (await response.json()) as RefreshTokenResponseData;
+  const accessToken = responseData.result.data.accessToken;
 
   if (!accessToken) {
     redirect(ROUTES.signin);
@@ -32,7 +36,7 @@ export const fetchData = (
     ...options,
     credentials: "include",
     headers: {
-      ...options?.headers,
+      ...(options?.headers as Record<string, string>),
       authorization: accessToken,
     },
   });

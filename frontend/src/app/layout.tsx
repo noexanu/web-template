@@ -1,3 +1,4 @@
+import "../styles/globals.scss";
 import { type PropsWithChildren } from "react";
 
 import { QueryProvider } from "../components/QueryProvider/QueryProvider";
