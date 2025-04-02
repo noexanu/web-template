@@ -2,6 +2,7 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { Button } from "@template/components";
 
 import { signinSchema } from "./form.types";
 import { Form } from "../../components/Form/Form";
@@ -28,7 +29,7 @@ export default function Signin() {
     <Form schema={signinSchema} onSubmit={mutate}>
       <TextInput name="email" />
       <TextInput name="password" />
-      <input type="submit" />
+      <Button type="submit">submit</Button>
     </Form>
   );
 }

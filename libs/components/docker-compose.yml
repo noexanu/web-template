@@ -1,0 +1,6 @@
+services:
+  template:
+    image: template:components
+    restart: always
+    ports:
+      - 5000:80

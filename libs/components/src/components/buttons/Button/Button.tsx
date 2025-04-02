@@ -1,13 +1,11 @@
 import { type JSX } from "react";
 
-export type ButtonProps = JSX.IntrinsicElements["button"] & {
-  label: string;
-};
+export type ButtonProps = JSX.IntrinsicElements["button"];
 
-export const Button = ({ label, ...props }: ButtonProps) => {
+export const Button = ({ children, ...props }: ButtonProps) => {
   return (
     <button type="button" {...props}>
-      {label}
+      {children}
     </button>
   );
 };

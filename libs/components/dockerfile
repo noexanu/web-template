@@ -1,0 +1,17 @@
+ARG NODE_VERSION
+ARG PNPM_VERSION
+
+# Stage 1: Build
+FROM node:${NODE_VERSION}-alpine AS build
+ARG PACKAGE_NAME
+RUN npm install -g pnpm@${PNPM_VERSION}
+WORKDIR /app
+COPY --from=root . .
+RUN pnpm i
+RUN pnpm --filter $PACKAGE_NAME run build
+
+# Stage 2: Production
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+
+COPY --from=build /app/libs/components/build/ .

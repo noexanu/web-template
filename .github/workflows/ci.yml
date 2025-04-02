@@ -48,3 +48,15 @@ jobs:
 
       - name: Run build
         run: pnpm run build
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to branch
+        uses: actions/checkout@v4
+
+      - name: Setup monorepo
+        uses: ./.github/actions/setup-monorepo
+
+      - name: Run docker:build
+        run: pnpm run docker:build
