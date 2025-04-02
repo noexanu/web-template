@@ -9,6 +9,8 @@
     "lint:fix": {},
     "format": {},
     "format:fix": {},
-    "ts:check": {}
+    "ts:check": {},
+    "docker:build": {},
+    "docker:start": {}
   }
 }

@@ -1,7 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@template/components",
+  "main": "src/index.ts",
   "scripts": {
     "dev": "storybook dev -p 6006 --no-open",
     "test:": "",
@@ -10,7 +9,9 @@
     "lint:fix": "eslint src --fix",
     "format": "prettier \"src/**/*.{ts,tsx,json}\" --check",
     "format:fix": "prettier --write \"src/**/*.{ts,tsx,json}\"",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "docker:build": "IMAGE_NAME=template:components sh ../../scripts/docker-build.sh",
+    "docker:start": "pnpm run docker:build && docker compose up -d"
   },
   "dependencies": {
     "react": "^19.0.0",

@@ -1,4 +1,4 @@
 # This is a configuration for asdf tool version manager
 
-nodejs 22.12.0
+nodejs 22.14.0
 pnpm 9.15.0

@@ -36,7 +36,7 @@ server.register(fastifyTRPCPlugin, {
   } satisfies FastifyTRPCPluginOptions<Router>["trpcOptions"],
 });
 
-server.listen({ port: envConfig.PORT }, (error) => {
+server.listen({ host: "0.0.0.0", port: envConfig.PORT }, (error) => {
   if (error) {
     logger.info(`Server run failed: ${error.message}`);
     throw error;

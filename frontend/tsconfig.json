@@ -7,6 +7,11 @@
     "noEmit": true,
     "plugins": [{ "name": "next" }]
   },
-  "include": ["src/**/*", "types/*.d.ts", ".next/types/**/*.ts"],
+  "include": [
+    "src/**/*",
+    "types/*.d.ts",
+    ".next/types/**/*.ts",
+    "build/types/**/*.ts"
+  ],
   "exclude": ["node_modules", "build", ".next"]
 }

@@ -21,7 +21,7 @@ runs:
         envFilePaths=$(find . -name ".env.example")
         for envFilePath in $envFilePaths;
         do
-            outputPath=$(echo $envFilePath | sed "s/.example//g")
+            outputPath=$(echo $envFilePath | sed "s|.example||g")
             cp $envFilePath $outputPath
         done
 
