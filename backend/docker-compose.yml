@@ -18,6 +18,8 @@ services:
   template:
     image: template:backend
     restart: always
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/test
     env_file:
       - .env
     ports:
