@@ -20,6 +20,7 @@ packagePaths=$(
     -name 'package.json'\
     -not -path "*/node_modules/*" -prune\
     -not -path "*/src/*" -prune\
+    -not -path "*/build/*" -prune\
   | perl -pe 's|\.\./||g'
 )
 
