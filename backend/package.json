@@ -21,8 +21,8 @@
     "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^11.0.1",
     "@fastify/helmet": "^13.0.1",
-    "@prisma/client": "^6.5.0",
-    "@trpc/server": "^11.0.1",
+    "@prisma/client": "^6.6.0",
+    "@trpc/server": "^11.0.4",
     "argon2": "^0.41.1",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.2",
@@ -36,9 +36,9 @@
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.9",
-    "@types/node": "^22.13.17",
+    "@types/node": "^22.14.0",
     "@types/uuid": "^10.0.0",
-    "prisma": "^6.5.0",
+    "prisma": "^6.6.0",
     "tsx": "^4.19.3"
   }
 }

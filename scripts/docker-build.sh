@@ -26,6 +26,7 @@ packagePaths=$(
 
 copyInstructions=$(
   echo COPY --from=build /app/pnpm-workspace.yaml ./
+  echo COPY --from=build /app/patches/ ./patches/
   echo COPY --from=build /app/$workspace/build/ ./$workspace/build/
   for packagePath in $packagePaths
   do

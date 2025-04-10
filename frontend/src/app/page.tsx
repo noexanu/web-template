@@ -9,7 +9,7 @@ import { prefetchQuery } from "../utils/querySSR.utils";
 import { trpcSSR } from "../utils/trpcSSR.utils";
 
 export default async function HomePage() {
-  await prefetchQuery(trpcSSR.test.queryOptions());
+  await prefetchQuery(trpcSSR.testProtected.queryOptions());
 
   return (
     <HydrateClient>

@@ -13,22 +13,27 @@
     "docker:start": "turbo docker:start"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^15.2.4",
-    "eslint": "^9.23.0",
+    "@next/eslint-plugin-next": "^15.3.0",
+    "eslint": "^9.24.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-regexp": "^2.7.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-sonarjs": "^3.0.2",
-    "eslint-plugin-storybook": "^0.11.6",
+    "eslint-plugin-storybook": "^0.12.0",
     "eslint-plugin-tailwindcss": "^3.18.0",
-    "eslint-plugin-unicorn": "^57.0.0",
+    "eslint-plugin-unicorn": "^58.0.0",
     "prettier": "^3.5.3",
-    "turbo": "^2.4.4",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.29.0"
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.0",
+  "pnpm": {
+    "patchedDependencies": {
+      "@trpc/tanstack-react-query": "patches/@trpc__tanstack-react-query.patch"
+    }
+  }
 }

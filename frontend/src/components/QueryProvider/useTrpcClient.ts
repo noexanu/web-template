@@ -1,14 +1,17 @@
 import { useMemo } from "react";
 import { createTRPCClient, httpBatchLink } from "@trpc/client";
+import { useRouter } from "next/navigation";
 import { type Router } from "@template/backend";
 
 import { envPublicConfig } from "../../config/envPublicConfig";
+import { ROUTES } from "../../const/routes.const";
 import { useAuthStore } from "../../stores/authStore";
 import { fetchData, refreshTokens } from "../../utils/trpc.utils";
 
 export const useTrpcClient = () => {
   const accessToken = useAuthStore((state) => state.accessToken) ?? "";
   const setAccessToken = useAuthStore((state) => state.setAccessToken);
+  const router = useRouter();
 
   return useMemo(
     () =>
@@ -25,6 +28,12 @@ export const useTrpcClient = () => {
 
               const newAccessToken = await refreshTokens();
 
+              if (!newAccessToken) {
+                router.push(ROUTES.signin);
+
+                return response;
+              }
+
               setAccessToken(newAccessToken);
 
               return fetchData(url, options, newAccessToken);
@@ -33,6 +42,6 @@ export const useTrpcClient = () => {
         ],
       }),
 
-    [accessToken, setAccessToken]
+    [router, accessToken, setAccessToken]
   );
 };
