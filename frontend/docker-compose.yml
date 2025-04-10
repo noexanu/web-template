@@ -2,7 +2,15 @@ services:
   template:
     image: template:frontend
     restart: always
+    environment:
+      - SERVER_BASE_URL=http://template:4000/trpc
     env_file:
       - .env
     ports:
       - 3000:3000
+    networks:
+      - template
+
+networks:
+  template:
+    external: true
