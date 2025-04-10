@@ -1,0 +1,1 @@
+export { tailwindSharedConfig } from "./tailwindSharedConfig";

@@ -33,4 +33,4 @@ export async function middleware({ url, headers }: NextRequest) {
 
   Matchers array should be fulfilled with SSR protected routes
 */
-export const config = { matcher: [] };
+export const config = { matcher: ["/"] };
