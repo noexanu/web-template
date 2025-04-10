@@ -19,7 +19,10 @@ export const refreshMiddleware = trpc.middleware(async ({ ctx, next }) => {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
 
-  const { uuid } = tokenService.verifyToken(refreshToken, "refresh");
-
-  return next({ ctx: { uuid } });
+  try {
+    const { uuid } = tokenService.verifyToken(refreshToken, "refresh");
+    return await next({ ctx: { uuid } });
+  } catch {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
 });

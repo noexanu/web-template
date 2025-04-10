@@ -6,7 +6,7 @@ import { useTRPC } from "../components/QueryProvider/QueryProvider";
 
 export function Home() {
   const trpc = useTRPC();
-  const { data } = useQuery(trpc.test.queryOptions());
+  const { data } = useQuery(trpc.testProtected.queryOptions());
 
   return data;
 }

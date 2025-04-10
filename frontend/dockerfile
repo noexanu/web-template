@@ -18,6 +18,7 @@ WORKDIR /app
 
 # GENERATED
 COPY --from=build /app/pnpm-workspace.yaml ./
+COPY --from=build /app/patches/ ./patches/
 COPY --from=build /app/frontend/build/ ./frontend/build/
 COPY --from=build /app/frontend/package.json ./frontend/package.json
 COPY --from=build /app/package.json ./package.json

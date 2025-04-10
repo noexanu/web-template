@@ -1,13 +1,10 @@
-import { redirect } from "next/navigation";
-
 import { envPublicConfig } from "../config/envPublicConfig";
-import { ROUTES } from "../const/routes.const";
 
-type RefreshTokenResponseData = {
-  result: { data: { accessToken: string } };
+export type RefreshTokenResponseData = {
+  result?: { data?: { accessToken?: string } };
 };
 
-export const refreshTokens = async (): Promise<string> => {
+export const refreshTokens = async () => {
   const response = await fetch(
     `${envPublicConfig.NEXT_PUBLIC_SERVER_BASE_URL}/refreshTokens`,
     {
@@ -18,25 +15,19 @@ export const refreshTokens = async (): Promise<string> => {
   );
 
   const responseData = (await response.json()) as RefreshTokenResponseData;
-  const accessToken = responseData.result.data.accessToken;
 
-  if (!accessToken) {
-    redirect(ROUTES.signin);
-  }
-
-  return accessToken;
+  return responseData.result?.data?.accessToken;
 };
 
 export const fetchData = (
   url: URL | RequestInfo,
   options: RequestInit | undefined,
-  accessToken: string
-) =>
-  fetch(url, {
-    ...options,
-    credentials: "include",
-    headers: {
-      ...(options?.headers as Record<string, string>),
-      authorization: accessToken,
-    },
-  });
+  accessToken?: string | null
+) => {
+  const headers = {
+    ...(options?.headers as Record<string, string>),
+    ...(!!accessToken && { authorization: accessToken }),
+  };
+
+  return fetch(url, { ...options, headers, credentials: "include" });
+};
