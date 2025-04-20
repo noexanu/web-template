@@ -11,10 +11,10 @@ export const signinSchema = z.object({
     // .regex(/[\W_]/g, "Password must contain special characters")
     .refine(
       (value) => !/(.)\1{3,}/.test(value),
-      "Password must not contain character sequence"
+      "Password must not contain character sequence",
     )
     .refine(
       (value) => !/\s/.test(value),
-      "Password must not contain white spaces"
+      "Password must not contain white spaces",
     ),
 });

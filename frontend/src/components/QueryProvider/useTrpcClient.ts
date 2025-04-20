@@ -42,6 +42,6 @@ export const useTrpcClient = () => {
         ],
       }),
 
-    [router, accessToken, setAccessToken]
+    [router, accessToken, setAccessToken],
   );
 };

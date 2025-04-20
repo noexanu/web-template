@@ -21,6 +21,7 @@ packagePaths=$(
     -not -path "*/node_modules/*" -prune\
     -not -path "*/src/*" -prune\
     -not -path "*/build/*" -prune\
+    -not -path "*/.next/*" -prune\
   | perl -pe 's|\.\./||g'
 )
 

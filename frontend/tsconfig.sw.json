@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["ES6", "WebWorker"],
+    "module": "ESNext",
+    "outDir": "./public",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "incremental": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/utils/serviceWorker.ts"]
+}

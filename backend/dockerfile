@@ -9,7 +9,7 @@ WORKDIR /app
 COPY --from=root . .
 RUN pnpm i
 RUN pnpm --filter $PACKAGE_NAME run build
-RUN cd backend && pnpm run prisma:generate
+RUN cd backend; pnpm run prisma:generate
 RUN cp -r backend/src/prisma/ backend/build/prisma/
 
 # Stage 2: Production
