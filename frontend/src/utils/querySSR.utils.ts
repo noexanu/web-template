@@ -15,17 +15,17 @@ export const prefetchQuery = <
   T extends TRPCQueryOptions<K> | TRPCInfiniteQueryOptions<K>,
   K extends ResolverDef,
 >(
-  queryOptions: ReturnType<T>
+  queryOptions: ReturnType<T>,
 ) => {
   const queryClient = getQueryClientSSR();
 
   if (queryOptions.queryKey[1]?.type === "infinite") {
     return queryClient.prefetchInfiniteQuery(
-      queryOptions as ReturnType<TRPCInfiniteQueryOptions<K>>
+      queryOptions as ReturnType<TRPCInfiniteQueryOptions<K>>,
     );
   }
 
   return queryClient.prefetchQuery(
-    queryOptions as ReturnType<TRPCQueryOptions<K>>
+    queryOptions as ReturnType<TRPCQueryOptions<K>>,
   );
 };

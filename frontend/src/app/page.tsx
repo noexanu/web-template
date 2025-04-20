@@ -1,5 +1,6 @@
 "use server";
 
+import { type Metadata } from "next";
 import Link from "next/link";
 
 import { Home } from "../components/Home";
@@ -18,4 +19,11 @@ export default async function HomePage() {
       <Link href={ROUTES.signup}>signup</Link>
     </HydrateClient>
   );
+}
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "home",
+  };
 }

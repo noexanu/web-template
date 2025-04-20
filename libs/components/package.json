@@ -11,7 +11,7 @@
     "format:fix": "prettier --write \"src/**/*.{ts,tsx,json}\"",
     "ts:check": "tsc --noEmit",
     "docker:build": "IMAGE_NAME=template:components sh ../../scripts/docker-build.sh",
-    "docker:start": "pnpm run docker:build && docker compose up -d"
+    "docker:start": "pnpm run docker:build; docker compose up -d"
   },
   "dependencies": {
     "@template/tailwind-config": "workspace:*",

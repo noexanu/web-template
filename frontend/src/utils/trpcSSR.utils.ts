@@ -16,7 +16,7 @@ export const refreshTokens = async (cookie: string) => {
       method: "POST",
       credentials: "include",
       headers: { "content-type": "application/json", cookie },
-    }
+    },
   );
 
   const responseData = (await response.json()) as RefreshTokenResponseData;

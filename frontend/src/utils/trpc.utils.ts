@@ -11,7 +11,7 @@ export const refreshTokens = async () => {
       method: "POST",
       credentials: "include",
       headers: { "content-type": "application/json" },
-    }
+    },
   );
 
   const responseData = (await response.json()) as RefreshTokenResponseData;
@@ -22,7 +22,7 @@ export const refreshTokens = async () => {
 export const fetchData = (
   url: URL | RequestInfo,
   options: RequestInit | undefined,
-  accessToken?: string | null
+  accessToken?: string | null,
 ) => {
   const headers = {
     ...(options?.headers as Record<string, string>),

@@ -15,21 +15,21 @@ export class AuthController {
   @inject(TokenService) private tokenService!: TokenService;
 
   signupWithEmailAndPassword = async (
-    payload: SignupWithEmailAndPasswordData
+    payload: SignupWithEmailAndPasswordData,
   ) => {
     const user = await this.userService.create(payload);
     return this.tokenService.generateTokenPair(user, "create");
   };
 
   signinWithEmailAndPassword = async (
-    payload: SigninWithEmailAndPasswordData
+    payload: SigninWithEmailAndPasswordData,
   ) => {
     const user = await this.userService.read(payload);
 
     if (user.password) {
       const isValidPassword = await hashing.verify(
         user.password,
-        payload.password
+        payload.password,
       );
 
       if (isValidPassword) {

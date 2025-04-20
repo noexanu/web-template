@@ -10,3 +10,4 @@ build
 # files
 *.env
 *.tsbuildinfo
+**/public/**/*.js

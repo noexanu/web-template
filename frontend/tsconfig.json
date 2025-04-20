@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./",
-    "lib": ["dom", "dom.iterable"],
+    "lib": ["DOM", "DOM.Iterable", "WebWorker"],
     "jsx": "preserve",
     "noEmit": true,
     "plugins": [{ "name": "next" }]
